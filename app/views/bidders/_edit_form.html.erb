@@ -1,0 +1,9 @@
+<div class = "form-group">
+  <label class="control-label" for="bidder_name">Bidder</label>
+<%= text_field_tag :bidder_name, @bidder.user.name, class: "form-control", readonly: true %>
+</div>
+<%= bootstrap_form_for [@project, @bidder] do |f| %>
+<%= f.number_field :allowance, min: 1, step: 1 %>
+<%= f.primary %>
+<%= link_to "Cancel", :back, class: "btn btn-default", role: "button" %>
+<% end %>

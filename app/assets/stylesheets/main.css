@@ -1,0 +1,15 @@
+div.container-fluid { max-width: 1000px; }
+
+div.search {margin-top: 20px; margin-bottom: 10px}
+span.left-spacer { padding-left: 10px; }
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+.inline {
+  display: inline;
+  vertical-align: middle;
+}
+
+div.top-button { margin-bottom: 10px; }

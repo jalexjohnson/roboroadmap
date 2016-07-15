@@ -1,0 +1,100 @@
+User
+  name: string
+  email: string
+  password_digest: string
+  admin: boolean(false) # admin for the entire application
+  created_at: datetime
+  updated_at: datetime
+
+#Projects are currently serving as a combo of a project and an auction (to make things simpler)
+Project
+  name: string
+  capacity: integer(0)
+  auction_end: datetime
+  user_id: integer # creator/owner
+  created_at: datetime
+  updated_at: datetime
+#  sponsor_id: integer
+
+# Jobs are pieces of work to be done like epics or stories
+Job
+  name: string
+  size: integer(0)
+  total_value: integer(0)
+  description: text
+  link: string
+  project_id: integer
+  created_at: datetime
+  updated_at: datetime
+
+# Users are bidders on one or more projects
+Bidder
+  allowance: integer
+  user_id: integer
+  project_id: integer
+  created_at: datetime
+  updated_at: datetime
+
+Bid
+  amount: integer
+  bidder_id: integer
+  job_id: integer
+  created_at: datetime
+  updated_at: datetime
+
+# Users are owners of one or more projects
+# Owner
+#   user_id: integer
+#   project_id: integer
+#   created_at: datetime
+#   updated_at: datetime
+
+#Sponsor # Sponsors are companies or organizations
+#  name: string
+#  created_at: datetime
+#  updated_at: datetime
+
+#Member # Users are members of Sponsors
+#  user_id: integer
+#  sponsor_id: integer
+#  admin: boolean # admin for a particular Sponsor
+#  created_at: datetime
+#  updated_at: datetime
+
+
+# Example table for a typical Book model.
+#
+# Book
+#   title: string
+#   author_id: integer
+#   price: integer
+#   summary: text
+#   hardcover: boolean
+#
+# Indent consistently!  Follow the above syntax exactly.
+# Typical column choices are: string, text, integer, boolean, date, time, and datetime.
+#
+#
+# Specifying Default Values
+# ----------------------------------------------------
+# Default column values can be specified like this:
+#    price: integer(0)
+#
+# If not specified, Boolean columns always default to false.
+#
+#
+# Convention-Based Defaults:
+# ----------------------------------------------------
+# You can omit the column type if it's a string, or if it's obviously an integer column:
+#
+#
+# Book
+#   title
+#   author_id
+#   price: integer
+#   summary: text
+#   hardcover: boolean
+#
+# Complete details are in the README file online.
+#
+# Have fun!

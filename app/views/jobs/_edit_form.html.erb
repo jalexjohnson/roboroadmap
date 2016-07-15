@@ -1,0 +1,8 @@
+<%= bootstrap_form_for [@project, @job] do |f| %>
+<%= f.text_field :name %>
+<%= f.number_field :size, min: 0, step: 1 %>
+<%= f.text_field :link %>
+<%= f.text_area :description %>
+<%= f.primary %>
+<%= link_to "Cancel", :back, class: "btn btn-default", role: "button" %>
+<% end %>

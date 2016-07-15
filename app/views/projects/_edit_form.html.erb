@@ -1,0 +1,8 @@
+<%= bootstrap_form_for @project do |f| %>
+<%= f.text_field :name %>
+<%= f.number_field :capacity, min: 0, step: 1 %>
+<%= f.date_field :auction_end %>
+<%= f.select :user_id, options_from_collection_for_select(@users, :id, :name, @project.user_id) %>
+<%= link_to "Cancel", :back, class: "btn btn-default", role: "button" %>
+<%= f.primary %>
+<% end %>
