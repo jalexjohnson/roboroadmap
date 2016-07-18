@@ -1,4 +1,4 @@
-<h2>RoboRoadmap Help</h2>
+<h2>Help</h2>
 
 <p>RoboRoadmap is a tool for determining a project roadmap, using an auction-like method for determining priority across multiple stakeholders. The roadmap is determined given the following inputs:</p>
 <ol>
@@ -9,17 +9,23 @@
   <li>One or more <b>bidders/stakeholders</b> who determine the priority of the jobs to be done</li>
   <li>An <b>allowance</b> that each bidder/stakeholder uses to bid for the jobs they want the most</li>
 </ol>
-
+<br />
 <p class="lead">Access Levels</p>
 <ul>
-  <li><b>User: </b>A base user can view projects, jobs, and bids.</li>
+  <li><b>User: </b>A base user, once approved by an admin, can view projects, jobs, and bids.</li>
   <li><b>Project Owner: </b>A project owner can create/edit their project, jobs and their sizes in the project, and add/remove bidders/stakeholders to their project.</li>
   <li><b>Bidder: </b>A bidder on a project can use their allowance to bid for the jobs within the project and determine their priority.</li>
-  <li><b>Admin: </b>An admin can create new projects. Alex Johnson is the only Admin at this point, so let him know if you want a new project created.</li>
+  <li><b>Admin: </b>An admin can create new projects.
+    <% if logged_in? && current_user.permitted %>
+      Alex Johnson is the only Admin at this point, so <%= mail_to "alex.johnson@morningstar.com", "let him know" %> if you want a new project created.
+    <% end %>
+  </li>
 </ul>
-
+<br />
 <p class="lead">Future Enhancements</p>
 <ul>
   <li>Allow users to mark jobs as complete and/or in progress so that all unstarted work can continue to be re-prioritized and the roadmap can continue to evolve.</li>
-  <li>Got an idea? Email me (Alex Johnson) with your suggestion. I appreciate it!</li>
+  <% if logged_in? && current_user.permitted %>
+    <li>Got an idea? Email me (<%= mail_to "alex.johnson@morningstar.com" %>) with your suggestion. I appreciate it!</li>
+  <% end %>
 </ul>

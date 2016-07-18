@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "total_value", default: 0
     t.text     "description"
     t.string   "link"
+    t.boolean  "fits",        default: false
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "email"
     t.string   "password_digest"
     t.boolean  "admin",           default: false
+    t.boolean  "permitted",       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

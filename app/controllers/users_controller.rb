@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :require_login, :only => [:edit, :update, :destroy, :index]
+  before_action :require_admin, :only => [:edit, :update, :destroy, :index]
   before_action :find_user, :only => [:edit, :update, :destroy]
 
   def find_user
@@ -24,8 +25,7 @@ class UsersController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation] #has_secure_password automatically uses this
 
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path, notice: "Thanks for signing up, #{@user.name}"
+      redirect_to root_path, notice: "Thanks for signing up, #{@user.name}. Once an admin approves you, you'll be able to access the tool."
     else
       render :new
     end
@@ -43,7 +43,12 @@ class UsersController < ApplicationController
   def account_update
     @user = User.find_by_id(current_user.id)
     @user.update(params.require(:user).permit(:name, :email, :password, :password_confirmation))
-    redirect_to root_path
+    redirect_to root_path, notice: "Account updated."
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to users_path
   end
 
 end

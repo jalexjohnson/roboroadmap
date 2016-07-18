@@ -4,6 +4,7 @@
   <tr>
     <th>Email</th>
     <th>Name</th>
+    <th>Permitted?</th>
     <th>Admin?</th>
     <th>Edit</th>
     <th>Delete</th>
@@ -12,6 +13,7 @@
   <tr>
     <td><%= user.name %></td>
     <td><%= mail_to user.email, user.email %></td>
+    <td><%= user.permitted %></td>
     <td><%= user.admin %></td>
     <td>
       <%= link_to edit_user_path(user), class: "btn btn-info", role: "button" do %>

@@ -3,6 +3,7 @@
 <%= f.number_field :size, min: 0, step: 1 %>
 <%= f.text_field :link %>
 <%= f.text_area :description %>
+<%= f.hidden_field :project_id, value: @project.id %>
 <%= f.primary %>
 <%= link_to "Cancel", :back, class: "btn btn-default", role: "button" %>
 <% end %>

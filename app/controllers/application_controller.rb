@@ -16,6 +16,21 @@ class ApplicationController < ActionController::Base
   def require_login
     if !logged_in?
       redirect_to login_path
+    elsif !current_user.permitted
+      redirect_to help_path, notice: "You have not yet been approved for access by an admin."
+
+    end
+  end
+
+  def require_admin
+    if !current_user.admin
+      redirect_to root_path, notice: "You must be an admin to perform that action."
+    end
+  end
+
+  def require_owner(project)
+    if current_user.id != project.user_id
+      redirect_to root_path, notice: "You must be the owner of the project to perform that action."
     end
   end
 

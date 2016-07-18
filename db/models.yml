@@ -3,6 +3,7 @@ User
   email: string
   password_digest: string
   admin: boolean(false) # admin for the entire application
+  permitted: boolean(false)
   created_at: datetime
   updated_at: datetime
 
@@ -23,6 +24,7 @@ Job
   total_value: integer(0)
   description: text
   link: string
+  fits: boolean(false) # does the job fit in the project?
   project_id: integer
   created_at: datetime
   updated_at: datetime

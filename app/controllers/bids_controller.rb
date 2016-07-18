@@ -3,9 +3,16 @@ class BidsController < ApplicationController
   before_action :require_login
   before_action :find_bid, :only => [:show, :edit, :update, :destroy]
   before_action :find_job
+  before_action :require_bidder, :only => [:create, :update]
 
   def find_job
     @job = Job.find_by_id(params[:job_id])
+  end
+
+  def require_bidder
+    if !Bidder.find_by(user: current_user).present?
+      redirect_to root_path, notice: "You must be a bidder on the project to perform that action."
+    end
   end
 
   def find_bid
@@ -34,6 +41,10 @@ class BidsController < ApplicationController
 
   def bid_params
     params.require(:bid).permit(:amount, :bidder_id, :job_id)
+  end
+
+  def destroy
+    require_owner(@job.project)
   end
 
 end

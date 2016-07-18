@@ -21,7 +21,29 @@
   <dt>Documentation Link:</dt><dd><%= link_to @job.link, @job.link, target: :_blank %></dd>
   <dt>Description:</dt><dd><%= @job.description %></dd>
 </dl>
-<h2>Bids</h2>
+
+<% if @current_user_bidder.present? && @project.bidding_open? %>
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Make Bid (Remaining: <span class="value-color"><%= @current_user_bidder.remaining_allowance %></span>)</h3>
+      </div>
+      <div class="panel-body">
+        <%= bootstrap_form_for [@project, @job, @bid], layout: :inline do |f| %>
+          <%= f.number_field :amount, hide_label: true, min: 0, step: 1 %>
+          <%= f.hidden_field :bidder_id, value: @current_user_bidder.id %>
+          <%= f.hidden_field :job_id, value: @job.id %>
+          <%= f.submit "✔", class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8"></div>
+</div>
+<% end %>
+
+<h2>All Bids</h2>
 <table class="table table-striped">
   <tr>
     <th>Bidder</th>
@@ -32,7 +54,7 @@
   <tr>
     <td><%= bid.user.name %></td>
     <td><%= bid.amount %></td>
-    <td><%= bid.created_at %></td>
+    <td><%= date_format bid.updated_at %></td>
   </tr>
   <% end %>
 </table>
