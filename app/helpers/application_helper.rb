@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def date_format(date)
     if !date.nil?
-      return date.strftime("%b %d, %Y")
+      return date.strftime("%Y %b %d — %I:%M %p")
     else
       return nil
     end

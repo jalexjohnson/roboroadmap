@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
 
   has_secure_password #automatically deals with password confirmation
 
+  #http://stackoverflow.com/questions/11992544/validating-password-using-regex
+  validates :password, :format => {:with => /\A(?=.*[a-zA-Z])(?=.*[0-9]).{6,}\z/, message: "Password must be at least 6 characters and include one number and one letter."}
+
   before_validation :normalize_email
 
   def normalize_email
