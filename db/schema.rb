@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "size",        default: 0
     t.integer  "total_value", default: 0
     t.text     "description"
-    t.string   "link"
     t.boolean  "fits",        default: false
     t.integer  "project_id"
     t.datetime "created_at"

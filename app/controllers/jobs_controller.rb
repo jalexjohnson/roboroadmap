@@ -40,7 +40,7 @@ class JobsController < ApplicationController
   def update
     require_owner(@project)
     @job.update(job_params)
-    redirect_to project_path(@project)
+    redirect_to project_job_path(@project, @job)
   end
 
   def job_params

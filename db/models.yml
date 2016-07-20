@@ -23,7 +23,6 @@ Job
   size: integer(0)
   total_value: integer(0)
   description: text
-  link: string
   fits: boolean(false) # does the job fit in the project?
   project_id: integer
   created_at: datetime

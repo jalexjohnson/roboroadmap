@@ -1,9 +1,24 @@
-<%= bootstrap_form_for [@project, @job] do |f| %>
-<%= f.text_field :name %>
-<%= f.number_field :size, min: 0, step: 1 %>
-<%= f.text_field :link %>
-<%= f.text_area :description %>
-<%= f.hidden_field :project_id, value: @project.id %>
-<%= f.primary %>
-<%= link_to "Cancel", :back, class: "btn btn-default", role: "button" %>
-<% end %>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h2><%= heading %></h2>
+    <%= bootstrap_form_for [@project, @job] do |f| %>
+    <%= f.text_field :name %>
+    <%= f.number_field :size, min: 0, step: 1 %>
+    <%= f.text_area :description %>
+    <%= f.hidden_field :project_id, value: @project.id %>
+    <%= f.primary %>
+    <%= link_to "Cancel", :back, class: "btn btn-default", role: "button" %>
+    <% end %>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+
+
+
+<!-- Initialize the editor. -->
+  <script>
+      $(function() {
+          $('#job_description').froalaEditor({heightMin: 200})
+      });
+  </script>

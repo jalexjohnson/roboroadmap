@@ -14,13 +14,8 @@
   <% end %>
 <% end %>
 
-
-<dl class="dl-horizontal">
-  <dt>Size:</dt><dd><%= @job.size %></dd>
-  <dt>Total Value:</dt><dd><%= @job.total_value %></dd>
-  <dt>Documentation Link:</dt><dd><%= link_to @job.link, @job.link, target: :_blank %></dd>
-  <dt>Description:</dt><dd><%= @job.description %></dd>
-</dl>
+<h4>Size: <%= @job.size %></h4>
+<h4>Total Value: <%= @job.total_value %></h4>
 
 <% if @current_user_bidder.present? && @project.bidding_open? %>
 <div class="row">
@@ -41,6 +36,11 @@
   </div>
   <div class="col-md-8"></div>
 </div>
+<% end %>
+
+<% if @job.description.present? %>
+  <h4>Description:</h4>
+  <div class="fr-view"><%= @job.description.html_safe %></div>
 <% end %>
 
 <h2>All Bids</h2>
