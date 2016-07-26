@@ -6,6 +6,7 @@ class Job < ActiveRecord::Base
   validates_presence_of :name, :project_id
   validates_numericality_of :size, greater_than_or_equal_to: 0
   validates_numericality_of :total_value, greater_than_or_equal_to: 0
+  validates_associated :project
 
   def update_total_value
     total = 0

@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :require_login
   before_action :require_admin, :only => [:new, :create, :destroy]
   before_action :find_project, :only => [:show, :edit, :update, :destroy]
-  before_action :all_users, :only => [:show, :new, :edit]
+  before_action :all_users, :only => [:show, :new, :edit, :create, :update]
 
   def find_project
     @project = Project.find_by_id(params[:id])
@@ -32,8 +32,12 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    Project.create(project_params)
-    redirect_to projects_path
+    @project = Project.create(project_params)
+    if @project.errors.any?
+      render :new
+    else
+      redirect_to projects_path
+    end
   end
 
   def edit
@@ -43,7 +47,11 @@ class ProjectsController < ApplicationController
   def update
     current_user.admin || require_owner(@project)
     @project.update(project_params)
-    redirect_to project_path(@project)
+    if @project.errors.any?
+      render :edit
+    else
+      redirect_to project_path(@project)
+    end
   end
 
   def destroy

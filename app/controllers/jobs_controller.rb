@@ -29,8 +29,12 @@ class JobsController < ApplicationController
 
   def create
     require_owner(@project)
-    Job.create(job_params)
-    redirect_to project_path(@project)
+    @job = Job.create(job_params)
+    if @job.errors.any?
+      render :new
+    else
+      redirect_to project_path(@project)
+    end
   end
 
   def edit
@@ -40,7 +44,11 @@ class JobsController < ApplicationController
   def update
     require_owner(@project)
     @job.update(job_params)
-    redirect_to project_job_path(@project, @job)
+    if @job.errors.any?
+      render :edit
+    else
+      redirect_to project_job_path(@project, @job)
+    end
   end
 
   def job_params

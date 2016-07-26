@@ -32,8 +32,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(params.require(:user).permit(:name, :email, :password, :admin))
-    redirect_to users_path
+    @user.update(params.require(:user).permit(:name, :email, :password, :admin, :permitted))
+    if @user.errors.any?
+      render :edit
+    else
+      redirect_to users_path
+    end
   end
 
   def account_edit

@@ -6,6 +6,8 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name, :user_id, :capacity
   validates_uniqueness_of :name
+  #http://stackoverflow.com/questions/2263267/limit-number-of-objects-in-has-many-association
+  validates_length_of :jobs, maximum: 200
   validates_numericality_of :capacity, greater_than_or_equal_to: 0
   validates_numericality_of :capacity, less_than_or_equal_to: 1000 #need to place a limit bc knapsack is O(capacity*job_count)
 

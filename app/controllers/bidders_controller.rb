@@ -19,8 +19,13 @@ class BiddersController < ApplicationController
 
   def update
     require_owner(@project)
+    @users = get_all_users
     @bidder.update(params.require(:bidder).permit(:allowance))
-    redirect_to project_path(@project)
+    if @bidder.errors.any?
+      render :edit
+    else
+      redirect_to project_path(@project)
+    end
   end
 
   def create
