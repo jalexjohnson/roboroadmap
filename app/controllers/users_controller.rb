@@ -32,7 +32,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(params.require(:user).permit(:name, :email, :password, :admin, :permitted))
+    if params[:user][:password].present?
+      @user.update(params.require(:user).permit(:name, :email, :password, :admin, :permitted))
+    else
+      @user.update(params.require(:user).permit(:name, :email, :admin, :permitted))
+    end
     if @user.errors.any?
       render :edit
     else
