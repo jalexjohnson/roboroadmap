@@ -15,3 +15,5 @@ span.left-spacer { padding-left: 10px; }
 div.top-button { margin-bottom: 10px; }
 
 span.value-color { color: #DAA520; }
+span.scheduled-color { color: #009900; }
+span.unscheduled-color { color: #DAA520; }

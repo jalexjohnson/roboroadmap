@@ -33,10 +33,10 @@
   <% end %>
 </div>
 
-<h4>Scheduled</h4>
+<h4><span class="scheduled-color">Scheduled</span> (<%= @project.jobs.where(fits: true).sum(:size) %>/<%= @project.capacity %>)</h4>
 <%= render "jobs_table", jobs: @project.jobs.where(fits: true).order("total_value DESC") %>
 
-<h4>Unscheduled</h4>
+<h4><span class="unscheduled-color">Unscheduled</span></h4>
 <%= render "jobs_table", jobs: @project.jobs.where(fits: false).order("total_value DESC") %>
 
 <h3>Bidders</h3>
