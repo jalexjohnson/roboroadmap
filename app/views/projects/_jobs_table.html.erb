@@ -13,7 +13,7 @@
   </tr>
   <% jobs.each do |job| %>
     <tr>
-      <td><%= link_to job.name, project_job_path(@project, job) %></td>
+      <td width="40%"><%= link_to job.name, project_job_path(@project, job) %></td>
       <td><%= job.size %></td>
       <td><%= job.total_value %></td>
       <% if @current_user_bidder.present? && @project.bidding_open? %>
